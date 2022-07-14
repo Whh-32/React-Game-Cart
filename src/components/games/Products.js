@@ -27,28 +27,31 @@ const Products = () => {
     }, [page])
 
     return (
-        <div className='w-full h-auto bg-[#262735] rounded-t-[15px] px-[30px] py-[60px] relative'>
+        <div className='w-full h-auto bg-[#141414] rounded-t-[15px] px-[30px] py-[60px] pb-[20px] relative'>
             <span className='text-[#ffffff] absolute left-4 top-4'>STORE</span>
-            <div className='w-full h-auto bg-[#262735] rounded-t-[15px] px-[10px] py-[10px] relative'>
+            <div className='w-full h-auto rounded-t-[15px] px-[10px] py-[10px] relative'>
                 <div className='w-full h-auto bg-[#ffffff00] grid grid-cols-2 gap-y-10 sm:grid-cols-3 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8'>
 
                     {games.map(game => (
                         <Product
                             key={game.id}
                             id={game.id}
+                            released={game.released}
                             name={game.name}
                             cover={game.background_image}
+                            pics={game.short_screenshots}
+                            genres={game.genres}
                             platforms={game.parent_platforms}
                         />
                     ))}
 
                 </div>
                 <div className='mt-6'>
-                    <button onClick={nextPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[40px] bg-[#4f5fec]'>Next</button>
+                    <button onClick={nextPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[40px] bg-[#363636]'>Next</button>
                     {
                         page >= 2 ?
-                            <button onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[40px] bg-[#4f5fec]'>Previous</button> :
-                            <button disabled={true} onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[40px] bg-[#535883]'>Previous</button>
+                            <button onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[40px] bg-[#363636]'>Previous</button> :
+                            <button disabled={true} onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[40px] bg-[#202020]'>Previous</button>
                     }
 
                 </div>
