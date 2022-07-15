@@ -5,7 +5,7 @@ import Products from '../components/games/Products'
 
 const Home = () => {
   return (
-    <div className='bg-[#141414] w-full px-[40px] pt-[15px]' >
+    <div className='bg-[#141414] w-full px-[10px] pt-[15px]' >
         <Slider />
         <Products />
     </div>

@@ -64,8 +64,8 @@ const Products = () => {
                     <button onClick={nextPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[35px] bg-[#363636]'>Next</button>
                     {
                         page >= 2 ?
-                            <button onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[35px] bg-[#363636]'>Previous</button> :
-                            <button disabled={true} onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[35px] bg-[#202020]'>Previous</button>
+                            <button onClick={previousPage} className='rounded-xl text-[#ffffff] w-[100px] h-[35px] bg-[#363636]'>Previous</button> :
+                            <button disabled={true} onClick={previousPage} className='rounded-xl text-[#ffffff] w-[100px] h-[35px] bg-[#202020]'>Previous</button>
                     }
 
                 </div>
