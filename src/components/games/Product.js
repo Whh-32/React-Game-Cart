@@ -52,7 +52,7 @@ const Product = (props) => {
     return (
         <SkeletonTheme baseColor="#363636" highlightColor="#444">
             <div onMouseEnter={() => { activChengeImage('enter') }} onMouseLeave={() => { activChengeImage('leave') }} className='hover:scale-[103%] transition-all duration-[80ms] w-full h-[100%]  aspect-w-1 aspect-h-1 rounded-2xl overflow-hidden xl:aspect-w-6 xl:aspect-h-8 bg-[#202020]'>
-                <div className='w-full h-[85px] xl:h-[123px] lg:h-[162px] relative'>
+                <div className='w-full h-[clamp(85px,25vw,156px)] sm:h-[clamp(104px,17vw,172px)] lg:h-[clamp(172px,17vw,230px)] xl:h-[clamp(172px,13vw,191px)]  relative'>
                     <img className='w-full h-full object-cover' src={image} alt="pix" />
                     <ul className='absolute bottom-0 w-full h-full flex justify-center px-[10px]'>
                         {chengeActive && props.pics.map(pic => (
@@ -66,29 +66,29 @@ const Product = (props) => {
                     </ul>
                 </div>
                 <div className='w-full h-auto py-[15px] px-[10px] text-white flex flex-col'>
-                    <span className='w-full text-[14px] font-medium hover:text-[#cacaca] overflow-hidden text-ellipsis whitespace-nowrap'>
+                    <span className='w-full text-[14px] sm:text-[16px] font-medium hover:text-[#cacaca] overflow-hidden text-ellipsis whitespace-nowrap'>
                         <Link to='/'>{props.name || <Skeleton />}</Link>
                     </span>
 
-                    {<span className='text-[12px] flex my-2 w-[100px]'>
+                    {<span className='text-[12px] sm:text-[14px] flex my-2 w-[100px]'>
                         {platforms.find(plat => plat === 'PC') && <FaWindows className='mr-2 text-[14px]' />}
                         {platforms.find(plat => plat === 'PlayStation') && <FaPlaystation className='mr-2 text-[14px]' />}
                         {platforms.find(plat => plat === 'Xbox') && <FaXbox className='mr-2 text-[14px]' />}
 
                     </span> || <Skeleton />}
 
-                    <div className='text-[9px] flex justify-between border-[#696969] border-b-[1px] py-[10px]'>
+                    <div className='text-[9px] sm:text-[12px] flex justify-between border-[#696969] border-b-[1px] py-[10px]'>
                         <span className='text-[#696969]'>Release date:</span>
                         <span>{`${Rdate.month} ${Rdate.day}, ${Rdate.year}`}</span>
                     </div>
 
-                    <div className='text-[9px] flex justify-between py-[10px]'>
+                    <div className='text-[9px] sm:text-[12px] flex justify-between py-[10px]'>
                         <span className='text-[#696969]'>Genres:</span>
                         <span>{props.genres[0].name}</span>
                     </div>
 
-                    <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] text-start pl-[10px] transition-all duration-200'>Show more details</button>
-                    <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] text-start pl-[10px] transition-all duration-200'>add to cart</button>
+                    <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] sm:text-[14px] text-start pl-[10px] transition-all duration-200'>Show more details</button>
+                    <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] sm:text-[14px] text-start pl-[10px] transition-all duration-200'>add to cart</button>
                 </div>
             </div>
         </SkeletonTheme>

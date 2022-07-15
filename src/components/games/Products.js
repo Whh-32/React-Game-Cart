@@ -35,7 +35,7 @@ const Products = () => {
 
     return (
         <div className='w-full h-auto pb-[20px] relative'>
-            <select id="countries" className="bg-[#383838] border border-none text-white text-sm rounded-lg  outline-none block w-[170px] p-2">
+            <select id="countries" className="bg-[#383838] border border-none text-white text-[12px] rounded-lg  outline-none block w-[140px] lg:w-[170px] lg:text-[14px] p-2">
                 <option defaultValue="">Choose a Platforms</option>
                 <option value="pc">PC</option>
                 <option value="xbox">Xbox</option>
@@ -61,13 +61,12 @@ const Products = () => {
 
                 </div>
                 <div className='mt-[30px] flex justify-center'>
-                    <button onClick={nextPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[35px] bg-[#363636]'>Next</button>
                     {
                         page >= 2 ?
-                            <button onClick={previousPage} className='rounded-xl text-[#ffffff] w-[100px] h-[35px] bg-[#363636]'>Previous</button> :
-                            <button disabled={true} onClick={previousPage} className='rounded-xl text-[#ffffff] w-[100px] h-[35px] bg-[#202020]'>Previous</button>
+                            <button onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[35px] bg-[#363636]'>Previous</button> :
+                            <button disabled={true} onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[35px] bg-[#202020]'>Previous</button>
                     }
-
+                    <button onClick={nextPage} className='rounded-xl text-[#ffffff] w-[100px] h-[35px] bg-[#363636]'>Next</button>
                 </div>
             </div>
         </div>
