@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+
 
 import { FaWindows } from 'react-icons/fa';
 import { FaPlaystation } from 'react-icons/fa';
@@ -13,7 +12,6 @@ const Product = (props) => {
     const [image, setImage] = useState(props.cover);
     const [chengeActive, setChengeActive] = useState(false);
     const [index, setIndex] = useState(-1);
-
 
     useEffect(() => {
         //platform
@@ -50,7 +48,6 @@ const Product = (props) => {
     }
 
     return (
-        <SkeletonTheme baseColor="#363636" highlightColor="#444">
             <div onMouseEnter={() => { activChengeImage('enter') }} onMouseLeave={() => { activChengeImage('leave') }} className='hover:scale-[103%] transition-all duration-[80ms] w-full h-[100%]  aspect-w-1 aspect-h-1 rounded-2xl overflow-hidden xl:aspect-w-6 xl:aspect-h-8 bg-[#202020]'>
                 <div className='w-full h-[clamp(85px,25vw,156px)] sm:h-[clamp(104px,17vw,172px)] lg:h-[clamp(172px,17vw,230px)] xl:h-[clamp(172px,13vw,191px)]  relative'>
                     <img className='w-full h-full object-cover' src={image} alt="pix" />
@@ -67,15 +64,15 @@ const Product = (props) => {
                 </div>
                 <div className='w-full h-auto py-[15px] px-[10px] text-white flex flex-col'>
                     <span className='w-full text-[14px] sm:text-[16px] font-medium hover:text-[#cacaca] overflow-hidden text-ellipsis whitespace-nowrap'>
-                        <Link to='/'>{props.name || <Skeleton />}</Link>
+                        <Link to='/'>{props.name}</Link>
                     </span>
 
                     {<span className='text-[12px] sm:text-[14px] flex my-2 w-[100px]'>
                         {platforms.find(plat => plat === 'PC') && <FaWindows className='mr-2 text-[14px]' />}
                         {platforms.find(plat => plat === 'PlayStation') && <FaPlaystation className='mr-2 text-[14px]' />}
-                        {platforms.find(plat => plat === 'Xbox') && <FaXbox className='mr-2 text-[14px]' />}
+                        {platforms.find(plat => plat === 'Xbox') && <FaXbox className='mr-2 text-[14px]'/>}
 
-                    </span> || <Skeleton />}
+                    </span>}
 
                     <div className='text-[9px] sm:text-[12px] flex justify-between border-[#696969] border-b-[1px] py-[10px]'>
                         <span className='text-[#696969]'>Release date:</span>
@@ -91,7 +88,6 @@ const Product = (props) => {
                     <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] sm:text-[14px] text-start pl-[10px] transition-all duration-200'>add to cart</button>
                 </div>
             </div>
-        </SkeletonTheme>
     )
 }
 

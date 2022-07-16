@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import Loading from './Loading';
+import PageCount from './PageCount';
 import Product from './Product';
-
-// import Skeleton from 'react-loading-skeleton';
-// import 'react-loading-skeleton/dist/skeleton.css';
 
 const Products = () => {
     const BASE_URL = 'https://api.rawg.io/api/games?key=00d647439340449eae7acb7e965ca18b';
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [page, setPage] = useState(1);
     const [games, setGames] = useState([]);
+    const [pages, setPages] = useState('');
 
     const nextPage = () => {
         setPage(prev => {
@@ -22,14 +22,18 @@ const Products = () => {
         })
     }
 
+    const chengePage = (page) => {
+        setPage(page)
+    }
+
     useEffect(() => {
         setIsLoading(true)
         fetch(`${BASE_URL}&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setGames(data.results);
+                setPages(Math.ceil(data.count/20));
                 setIsLoading(false)
-                console.log(data);
             })
     }, [page])
 
@@ -46,8 +50,8 @@ const Products = () => {
             <div className='w-full h-auto rounded-t-[15px] mt-[20px] py-[10px] relative'>
                 <div className='w-full h-auto bg-[#ffffff00] grid grid-cols-2 gap-y-10 sm:grid-cols-3 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8'>
 
-                    {games.map(game => (
-                        !isLoading && <Product
+                    {!isLoading ? games.map(game => (
+                        <Product
                             key={game.id}
                             id={game.id}
                             released={game.released}
@@ -57,21 +61,19 @@ const Products = () => {
                             genres={game.genres}
                             platforms={game.parent_platforms}
                         />
-                    ))}
+                    )) : Array.from(Array(20), (_, i) => <Loading key={i} />)
+                }
 
                 </div>
-                <div className='mt-[30px] flex justify-center'>
-                    {
-                        page >= 2 ?
-                            <button onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[35px] bg-[#363636]'>Previous</button> :
-                            <button disabled={true} onClick={previousPage} className='rounded-xl mr-6 text-[#ffffff] w-[100px] h-[35px] bg-[#202020]'>Previous</button>
-                    }
-                    <button onClick={nextPage} className='rounded-xl text-[#ffffff] w-[100px] h-[35px] bg-[#363636]'>Next</button>
-                </div>
+                <PageCount 
+                    page={page}
+                    pages={pages}
+                    onNextPage={nextPage}
+                    onPrevPage={previousPage}
+                    onGetPage={chengePage}
+                />
             </div>
         </div>
-
-
     )
 }
 
