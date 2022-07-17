@@ -1,49 +1,41 @@
 import React, { useState, useEffect } from 'react'
+
 import Loading from './Loading';
 import PageCount from './PageCount';
 import Product from './Product';
 
-const Products = () => {
+const Products = (props) => {
     const BASE_URL = 'https://api.rawg.io/api/games?key=00d647439340449eae7acb7e965ca18b';
     const [isLoading, setIsLoading] = useState(true)
-    const [page, setPage] = useState(1);
+    // const [page, setPage] = useState(1);
     const [games, setGames] = useState([]);
     const [pages, setPages] = useState('');
-
-    const nextPage = () => {
-        setPage(prev => {
-            return prev + 1;
-        });
-    }
-
-    const previousPage = () => {
-        setPage(prev => {
-            return prev - 1;
-        })
-    }
-
-    const chengePage = (page) => {
-        setPage(page)
-    }
+    const [platform, setPlatform] = useState('1');
 
     useEffect(() => {
-        setIsLoading(true)
-        fetch(`${BASE_URL}&page=${page}`)
+        // setPage(props.param)
+        setIsLoading(true);
+        fetch(`${BASE_URL}&parent_platforms=${platform}&page=${props.param}&search=${''}`)
             .then(res => res.json())
             .then(data => {
                 setGames(data.results);
                 setPages(Math.ceil(data.count/20));
                 setIsLoading(false)
+                console.log(data)
             })
-    }, [page])
+    }, [props.param, platform])
+
+    const filterPlatform = (event) => {
+        setPlatform(event.target.value)
+    }
 
     return (
         <div className='w-full h-auto pb-[20px] relative'>
-            <select id="countries" className="bg-[#383838] border border-none text-white text-[12px] rounded-lg  outline-none block w-[140px] lg:w-[170px] lg:text-[14px] p-2">
-                <option defaultValue="">Choose a Platforms</option>
-                <option value="pc">PC</option>
-                <option value="xbox">Xbox</option>
-                <option value="playstation">PlayStation</option>
+            <select onChange={filterPlatform} id="countries" className="bg-[#383838] border border-none text-white text-[12px] rounded-lg  outline-none block w-[143px] lg:w-[170px] lg:text-[14px] p-2">
+                <option value="1">Choose a Platforms</option>
+                <option value="1">PC</option>
+                <option value="2">Xbox</option>
+                <option value="3">PlayStation</option>
             </select>
 
             <span className='text-[#ffffff] flex relative left-0 mt-[20px]'>STORE</span>
@@ -55,7 +47,7 @@ const Products = () => {
                             key={game.id}
                             id={game.id}
                             released={game.released}
-                            name={game.name}
+                            name={game.name !== undefined && game.name}
                             cover={game.background_image}
                             pics={game.short_screenshots}
                             genres={game.genres}
@@ -66,11 +58,8 @@ const Products = () => {
 
                 </div>
                 <PageCount 
-                    page={page}
+                    page={props.param}
                     pages={pages}
-                    onNextPage={nextPage}
-                    onPrevPage={previousPage}
-                    onGetPage={chengePage}
                 />
             </div>
         </div>
