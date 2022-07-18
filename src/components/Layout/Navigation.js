@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 
-import logo from '../../asset/logo_game.png'
-import { FaRegUser } from 'react-icons/fa'
-import { BiSearch } from 'react-icons/bi'
+import logo from '../../asset/logo_game.png';
+import { FaRegUser } from 'react-icons/fa';
+
 
 const Navigation = () => {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const menuHandler = () => {
         setIsOpen(prev => {
             return !prev
         })
-        console.log(isOpen)
     }
 
     return (
@@ -57,10 +56,6 @@ const Navigation = () => {
             <div className='hidden flex-row-reverse items-center md:flex'>
                 <div className='text-white bg-[#3f3f3f] w-[40px] h-[40px] overflow-hidden rounded-[50%] flex justify-center items-center ml-4'>
                     <FaRegUser />
-                </div>
-                <div className='relative flex items-center'>
-                    <input spellCheck={false} type="text" placeholder='Search Game' className='bg-transparent border-[1px] border-[#b1b1b1]  outline-none w-[200px] h-[30px] text-[12px] rounded-lg pl-8 text-white' />
-                    <BiSearch color='#ffffff' className='absolute left-2' />
                 </div>
             </div>
             

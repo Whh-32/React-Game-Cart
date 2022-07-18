@@ -10,34 +10,22 @@ const Products = (props) => {
     // const [page, setPage] = useState(1);
     const [games, setGames] = useState([]);
     const [pages, setPages] = useState('');
-    const [platform, setPlatform] = useState('1');
+
 
     useEffect(() => {
         // setPage(props.param)
         setIsLoading(true);
-        fetch(`${BASE_URL}&parent_platforms=${platform}&page=${props.param}&search=${''}`)
+        fetch(`${BASE_URL}&parent_platforms=${props.platform}&page=${props.param}&search=${props.search}`)
             .then(res => res.json())
             .then(data => {
                 setGames(data.results);
-                setPages(Math.ceil(data.count/20));
+                setPages(Math.ceil(data.count / 20));
                 setIsLoading(false)
-                console.log(data)
             })
-    }, [props.param, platform])
-
-    const filterPlatform = (event) => {
-        setPlatform(event.target.value)
-    }
+    }, [props.param, props.platform, props.search])
 
     return (
         <div className='w-full h-auto pb-[20px] relative'>
-            <select onChange={filterPlatform} id="countries" className="bg-[#383838] border border-none text-white text-[12px] rounded-lg  outline-none block w-[143px] lg:w-[170px] lg:text-[14px] p-2">
-                <option value="1">Choose a Platforms</option>
-                <option value="1">PC</option>
-                <option value="2">Xbox</option>
-                <option value="3">PlayStation</option>
-            </select>
-
             <span className='text-[#ffffff] flex relative left-0 mt-[20px]'>STORE</span>
             <div className='w-full h-auto rounded-t-[15px] mt-[20px] py-[10px] relative'>
                 <div className='w-full h-auto bg-[#ffffff00] grid grid-cols-2 gap-y-10 sm:grid-cols-3 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8'>
@@ -52,12 +40,19 @@ const Products = (props) => {
                             pics={game.short_screenshots}
                             genres={game.genres}
                             platforms={game.parent_platforms}
+                            slug={game.slug}
                         />
                     )) : Array.from(Array(20), (_, i) => <Loading key={i} />)
-                }
+                    }
+                    {
+                        (pages === 0 && !isLoading) && 
+                        <div className='absolute flex justify-center items-center w-full text-white'>
+                            <p>Not Found</p>
+                        </div>
+                    }
 
                 </div>
-                <PageCount 
+                <PageCount
                     page={props.param}
                     pages={pages}
                 />

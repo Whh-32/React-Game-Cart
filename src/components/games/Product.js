@@ -88,8 +88,16 @@ const Product = (props) => {
                     <span>{props.genres.length === 0 ? "-" : props.genres[0].name}</span>
                 </div>
 
-                <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] sm:text-[14px] text-start pl-[10px] transition-all duration-200'>Show more details</button>
-                <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] sm:text-[14px] text-start pl-[10px] transition-all duration-200'>Add to collection</button>
+                <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] sm:text-[14px] text-start pl-[10px] transition-all duration-200'>
+                    <Link className='flex w-full h-full items-center' to={`/Details/${props.slug}`}>
+                        Show more details
+                    </Link>
+                </button>
+                <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] sm:text-[14px] text-start pl-[10px] transition-all duration-200'>
+                    <Link className='flex w-full h-full items-center' to='/'>
+                        Add to collection
+                    </Link>
+                </button>
             </div>
         </div>
     )
