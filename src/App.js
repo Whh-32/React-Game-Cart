@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
+import Collection from "./pages/Collection";
 import Details from "./pages/Details";
 import Home from "./pages/Home";
 import Store from "./pages/Store";
@@ -18,6 +19,7 @@ function App() {
         <Route path='/Details' >
           <Route path=':slug' element={<Details />} />
         </Route>
+        <Route path='/Collection' element={<Collection />} />
       </Route>
     </Routes>
 

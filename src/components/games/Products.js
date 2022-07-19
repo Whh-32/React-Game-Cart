@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 import Loading from './Loading';
 import PageCount from './PageCount';
@@ -35,7 +35,7 @@ const Products = (props) => {
                             key={game.id}
                             id={game.id}
                             released={game.released}
-                            name={game.name !== undefined && game.name}
+                            name={game.name}
                             cover={game.background_image}
                             pics={game.short_screenshots}
                             genres={game.genres}

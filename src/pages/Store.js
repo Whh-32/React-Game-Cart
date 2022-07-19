@@ -11,11 +11,11 @@ const Store = () => {
     const param = useParams();
 
     const filterPlatform = (event) => {
-        setPlatform(event.target.value)
+        setPlatform(event.target.value);
     }
 
     const inputHandler = (event) => {
-        setSearch(event.target.value)
+        setSearch(event.target.value);
     }
 
     return (

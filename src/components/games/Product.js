@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { actionCollection } from '../../Store/CollectionSlice';
+import { useSelector } from 'react-redux';
 
 import { FaWindows } from 'react-icons/fa';
 import { FaPlaystation } from 'react-icons/fa';
@@ -12,6 +15,8 @@ const Product = (props) => {
     const [image, setImage] = useState(props.cover);
     const [chengeActive, setChengeActive] = useState(false);
     const [index, setIndex] = useState(-1);
+    const dispatch = useDispatch();
+    const games = useSelector(state => state.collection);
 
     useEffect(() => {
         //platform
@@ -36,6 +41,7 @@ const Product = (props) => {
         released === null ? setRDate('-') : dateHandler()
     }, [props.platforms, props.released])
 
+    
     const activChengeImage = (state) => {
         if (state === 'enter') {
             setChengeActive(true);
@@ -49,6 +55,14 @@ const Product = (props) => {
     const chengImageHandler = (image, index) => {
         setImage(image);
         setIndex(index);
+    }
+
+    const collectionHandler = () => {
+        if (!games.collection.find(game => game.slug === props.slug)) {
+            dispatch(actionCollection.add(props))
+        } else {
+            dispatch(actionCollection.remove(props.slug))
+        }
     }
 
     return (
@@ -68,7 +82,7 @@ const Product = (props) => {
             </div>
             <div className='w-full h-auto py-[15px] px-[10px] text-white flex flex-col'>
                 <span className='w-full text-[14px] sm:text-[16px] font-medium hover:text-[#cacaca] overflow-hidden text-ellipsis whitespace-nowrap'>
-                    <Link to='/'>{props.name}</Link>
+                    <Link to={`/Details/${props.slug}`}>{props.name}</Link>
                 </span>
 
                 {<span className='text-[12px] sm:text-[14px] flex my-2 w-[100px]'>
@@ -93,10 +107,8 @@ const Product = (props) => {
                         Show more details
                     </Link>
                 </button>
-                <button className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] sm:text-[14px] text-start pl-[10px] transition-all duration-200'>
-                    <Link className='flex w-full h-full items-center' to='/'>
-                        Add to collection
-                    </Link>
+                <button onClick={collectionHandler} className='hover:text-[#FAD860] bg-[#303030] h-[30px] mt-[10px] rounded-[5px] text-[12px] sm:text-[14px] text-start pl-[10px] transition-all duration-200 cursor-pointer'>
+                    {!games.collection.find(game => game.slug === props.slug) ? 'Add to collection' : 'Remove from collection'}
                 </button>
             </div>
         </div>
