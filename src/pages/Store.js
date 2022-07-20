@@ -29,7 +29,7 @@ const Store = () => {
                     <option value="2">PlayStation</option>
                 </select>
                 <div className='relative flex items-center'>
-                    <input onChange={inputHandler} spellCheck={false} type="text" placeholder='Search Game' className='bg-transparent border-[1px] border-[#b1b1b1]  outline-none w-[200px] h-[37px] text-[13px] rounded-lg pl-8 text-white' />
+                    <input onChange={inputHandler} spellCheck={false} type="text" placeholder='Search Game' className='bg-transparent border-[1px] border-[#b1b1b1]  outline-none w-[200px] h-[34px] lg:h-[37px] text-[13px] rounded-lg pl-8 text-white' />
                     <BiSearch color='#ffffff' className='absolute left-2' />
                 </div>
             </div>

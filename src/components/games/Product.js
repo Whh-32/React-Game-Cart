@@ -75,7 +75,7 @@ const Product = (props) => {
                             onMouseEnter={() => { chengImageHandler(pic.image, pic.id) }}
                             className='relative h-full w-full mx-1'
                         >
-                            <span className={pic.id === index ? 'absolute bottom-2 w-full h-[4px] bg-[#ffffff] rounded-sm' : 'absolute bottom-2 w-full h-[4px] bg-[#ffffff9f] rounded-sm'}></span>
+                            <span className={pic.id === index ? 'absolute bottom-2 w-full h-[4px] bg-[#ff0404] rounded-sm' : 'absolute bottom-2 w-full h-[4px] bg-[#ffffff9f] rounded-sm'}></span>
                         </li>
                     ))}
                 </ul>

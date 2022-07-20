@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 
 import { FaWindows } from 'react-icons/fa';
@@ -10,6 +11,7 @@ const Details = () => {
     const param = useParams();
     const [details, setDetails] = useState('');
     const [image, setImage] = useState('');
+    const games = useSelector(state => state.collection);
 
     const DETAIL_URL = `https://api.rawg.io/api/games/${param.slug}?key=00d647439340449eae7acb7e965ca18b`;
     const IMAGE_URL = `https://api.rawg.io/api/games/${param.slug}/screenshots?key=00d647439340449eae7acb7e965ca18b`;
@@ -60,7 +62,9 @@ const Details = () => {
                             </div>
 
                             <div className='w-full mt-4'>
-                                <button className='w-full h-[35px] rounded-md bg-[#d83535] text-white font-medium  lg:mt-4'>Add to collection</button>
+                                <button className='w-full h-[35px] rounded-md bg-[#d83535] text-white font-medium  lg:mt-4'>
+                                    {!games.collection.find(game => game.slug === param.slug) ? 'Add to collection' : 'Remove from collection'}
+                                </button>
                             </div>
 
                             <div className='mt-[20px]'>
