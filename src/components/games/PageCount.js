@@ -15,7 +15,7 @@ const PageCount = (props) => {
                     <button disabled={true} onClick={() => { navigate(`/Store/${props.page - 1}`) }} className='rounded-xl text-[#ffffff] w-[100px] h-[35px] bg-[#202020]'>Prev</button>
             }
             <div className='flex mx-2 text-white overflow-y-auto w-[calc(100%-210px)] m-auto'>
-                <div className='flex items-center justify-center text-white w-full'>
+                <div className='flex items-center text-white w-full'>
                     <span onClick={getPage} className='bg-[#252525] cursor-pointer hover:text-[#FAD860] rounded-sm h-[25px] min-w-[25px] px-[6px] flex justify-center mr-2'>1</span>
                     <div className='flex items-center justify-center'>
                         <span onClick={getPage} className='bg-[#252525] cursor-pointer hover:text-[#FAD860] rounded-sm h-[25px] px-[6px] min-w-[25px] flex justify-center mr-2'>

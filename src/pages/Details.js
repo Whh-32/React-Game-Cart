@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { actionCollection } from '../Store/CollectionSlice';
 import { useParams } from 'react-router-dom';
 
 import { FaWindows } from 'react-icons/fa';
@@ -11,6 +12,7 @@ const Details = () => {
     const param = useParams();
     const [details, setDetails] = useState('');
     const [image, setImage] = useState('');
+    const dispatch = useDispatch();
     const games = useSelector(state => state.collection);
 
     const DETAIL_URL = `https://api.rawg.io/api/games/${param.slug}?key=00d647439340449eae7acb7e965ca18b`;
@@ -21,16 +23,35 @@ const Details = () => {
             .then(res => res.json())
             .then(data => {
                 setDetails(data);
-                // setIsLoading(false)
-            })
+            });
 
         fetch(`${IMAGE_URL}`)
             .then(res => res.json())
             .then(data => {
                 setImage(data.results);
-                // setIsLoading(false)
-            })
+            });
+            
     }, [DETAIL_URL, IMAGE_URL]);
+
+
+    
+    const collectionHandler = () => {
+        if (!games.collection.find(game => game.slug === param.slug)) {
+            dispatch(actionCollection.add({
+                name: details.name,
+                id:details.id,
+                genres: details.genres,
+                cover: details.background_image,
+                slug: details.slug,
+                released: details.released,
+                platforms: details.parent_platforms,
+                pics: image
+
+            }))
+        } else {
+            dispatch(actionCollection.remove(details.slug))
+        }
+    }
 
     return (
         <Fragment>
@@ -58,11 +79,11 @@ const Details = () => {
                             </div>
 
                             <div className='pr-2'>
-                                <span className='text-[30px] sm:text-[40px] lg:text-[60px] font-bold leading-[65px] flex mt-[18vw] md:mt-[40px]'>{details.name}</span>
+                                <span className='text-[30px] sm:text-[40px] lg:text-[60px] font-bold leading-[40px] sm:leading-[65px] flex mt-[18vw] md:mt-[40px]'>{details.name}</span>
                             </div>
 
                             <div className='w-full mt-4'>
-                                <button className='w-full h-[35px] rounded-md bg-[#d83535] text-white font-medium  lg:mt-4'>
+                                <button onClick={collectionHandler} className='w-full h-[35px] rounded-md bg-[#d83535] text-white font-medium  lg:mt-4'>
                                     {!games.collection.find(game => game.slug === param.slug) ? 'Add to collection' : 'Remove from collection'}
                                 </button>
                             </div>
