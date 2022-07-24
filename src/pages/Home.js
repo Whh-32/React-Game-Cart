@@ -25,8 +25,7 @@ const Home = () => {
     <div className='bg-[#141414] w-full px-[20px] lg:px-[40px] pt-[15px] transition-all duration-[500ms]' >
       <Slider />
 
-      <div className='w-full h-auto bg-[#ffffff00] grid grid-cols-2 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-4 xl:grid-cols-4 xl:gap-x-8 mb-[40px] text-[12px] sm:text-[16px]'>
-
+      <div className='w-full h-auto grid grid-cols-2 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-4 xl:grid-cols-4 xl:gap-x-8 mb-[40px] text-[12px] sm:text-[16px] py-5'>
         <div className='flex justify-center items-center text-white h-[60px] borderr-[1px] border-r font-medium'>
           <TbTruckDelivery size={30} className='mr-4' />
           <span >HASSLE FREE<br />Express Delivery</span>
@@ -43,7 +42,6 @@ const Home = () => {
           <MdOutlineHighQuality size={30} className='mr-2' />
           <span>HIGH QUALITY<br />Trusted Products</span>
         </div>
-
       </div>
 
       <div className='w-full h-auto'>

@@ -1,32 +1,41 @@
 import React from 'react'
 
-import pic from '../asset/game_cover/WarZone.jpg'
+import pic1 from '../asset/game_cover/Apex.jpg'
+import pic2 from '../asset/game_cover/WarZone.jpg'
+import pic3 from '../asset/game_cover/FortNight.jpg'
+import { useState } from 'react'
 
 const Slider = () => {
+    const [image, setImage] = useState(pic1);
+
+    const radioHandler = (index) => {
+        setImage(``)
+    }
+
     return (
         <div className='w-full max-h-[570px] h-[42vw] rounded-2xl mb-[50px] overflow-hidden'>
             <div id="default-carousel" className="relative" data-carousel="slide">
 
                 <div className="overflow-hidden relative rounded-lg w-full max-h-[570px] h-[42vw]">
 
-                    <div className="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20" data-carousel-item="0">
+                    <div className="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20">
                         <span className="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
-                        <img src={pic} className="object-cover h-full block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..." />
+                        <img src={pic1} className="flex object-cover" alt="apex" />
                     </div>
 
-                    <div className="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10" data-carousel-item="1">
-                        <img src={pic} className="object-cover h-full block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..." />
+                    <div className="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10">
+                        <img src={pic2} className="flex object-cover" alt="warzone" />
                     </div>
 
-                    <div className="duration-700 ease-in-out absolute inset-0 transition-all transform -translate-x-full z-10" data-carousel-item="2">
-                        <img src={pic} className="object-cover h-full block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..." />
+                    <div className="duration-700 ease-in-out absolute inset-0 transition-all transform -translate-x-full z-10">
+                        <img src={pic3} className="flex object-cover" alt="fortnite" />
                     </div>
                 </div>
 
                 <div className="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
-                    <button type="button" className="w-3 h-3 rounded-full bg-white dark:bg-gray-800" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                    <button type="button" className="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                    <button type="button" className="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                    <button type="button" className="w-3 h-3 rounded-full bg-white dark:bg-gray-800" aria-current="true" aria-label="Slide 1" onClick={() => {radioHandler(1)}}></button>
+                    <button type="button" className="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 2" onClick={() => {radioHandler(2)}}></button>
+                    <button type="button" className="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 3" onClick={() => {radioHandler(3)}}></button>
                 </div>
 
                 <button type="button" className="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev="">
