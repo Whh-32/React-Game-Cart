@@ -30,10 +30,10 @@ const Slider = () => {
                     </div>
                 </div>
 
-                <div className="flex absolute bottom-3 sm:bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
-                    <button type="button" className={`sm:w-3 sm:h-3  w-2 h-2 rounded-full dark:bg-gray-800 ${slide === 0 ? 'bg-white' : 'bg-white/50'}`} aria-current="true" aria-label="Slide 1" onClick={() => { radioHandler(0) }}></button>
-                    <button type="button" className={`sm:w-3 sm:h-3  w-2 h-2 rounded-full dark:bg-gray-800 ${slide === 1 ? 'bg-white' : 'bg-white/50'}`} aria-current="false" aria-label="Slide 2" onClick={() => { radioHandler(1) }}></button>
-                    <button type="button" className={`sm:w-3 sm:h-3  w-2 h-2 rounded-full dark:bg-gray-800 ${slide === 2 ? 'bg-white' : 'bg-white/50'}`} aria-current="false" aria-label="Slide 3" onClick={() => { radioHandler(2) }}></button>
+                <div className="flex absolute bottom-2 sm:bottom-4 left-1/2 z-30 space-x-2 -translate-x-1/2">
+                    <button type="button" className={`sm:w-6 sm:h-1  w-5 h-1 rounded-sm  dark:bg-gray-800 ${slide === 0 ? 'bg-[#ff1010]' : 'bg-white/50'}`} aria-current="true" aria-label="Slide 1" onClick={() => { radioHandler(0) }}></button>
+                    <button type="button" className={`sm:w-6 sm:h-1  w-5 h-1 rounded-sm  dark:bg-gray-800 ${slide === 1 ? 'bg-[#ff1010]' : 'bg-white/50'}`} aria-current="false" aria-label="Slide 2" onClick={() => { radioHandler(1) }}></button>
+                    <button type="button" className={`sm:w-6 sm:h-1  w-5 h-1 rounded-sm  dark:bg-gray-800 ${slide === 2 ? 'bg-[#ff1010]' : 'bg-white/50'}`} aria-current="false" aria-label="Slide 3" onClick={() => { radioHandler(2) }}></button>
                 </div>
 
                 <button onClick={() => { buttonHandler("left") }} type="button" className="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev="">
